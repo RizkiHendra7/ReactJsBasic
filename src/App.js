@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import ToastComponent from "./components/ToastComponent";
+import NavbarComponent from "./components/NavbarComponent"; 
+import UserIndex from "./containers/User/UserIndex";
+import DetailUser from "./containers/User/DetailUser";
+import CreateUser from "./containers/User/CreateUser";
+import EditUser from "./containers/User/EditUser";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = {
+     
+  };
+
+  render() {
+    console.log('dari app',this.state.modelPegawai)
+    return (
+      <div>
+        <NavbarComponent />
+        {/* <ToastComponent judulParam={this.state.judul} /> */}
+        
+        <BrowserRouter>
+          <Routes>
+            <Route path="/"  element={<UserIndex  />} />
+            <Route path="/Create" element={<CreateUser />} />
+            <Route path="/Detail/:id" element={<DetailUser />} />
+            <Route path="/Edit/:id" element={<EditUser />} />
+          </Routes>
+        </BrowserRouter> 
+      </div>
+    );
+  }
 }
-
-export default App;
